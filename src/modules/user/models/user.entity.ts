@@ -1,8 +1,10 @@
-import { Entity, Column } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 import { IsNotEmpty } from "class-validator";
 
 @Entity('user')
 export class User {
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
     @Column({
         comment: '昵称',
         default: ''
