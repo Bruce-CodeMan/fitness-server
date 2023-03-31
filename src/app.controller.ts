@@ -1,5 +1,4 @@
 import { Controller, Get } from '@nestjs/common';
-import { User } from './modules/user/models/user.entity';
 import { UserService } from './modules/user/user.service';
 
 @Controller()
@@ -16,4 +15,10 @@ export class AppController {
       account: 'admin',
     });
   }
+
+  @Get('/del')
+  async del(): Promise<boolean> {
+    return await this.userService.del('a67715d5-e4d5-4f33-9836-076bdb68b6d5');
+  }
 }
+
