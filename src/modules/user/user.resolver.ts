@@ -34,4 +34,12 @@ export class UserResolver {
     ): Promise<boolean> {
         return await this.userService.update(id, params);
     }
+
+    // 通过ID删除一个用户
+    @Mutation(() => Boolean, { description: "通过 ID 删除用户" })
+    async del(
+        @Args('id') id: string
+    ): Promise<boolean> {
+        return await this.userService.del(id);
+    }
 }
