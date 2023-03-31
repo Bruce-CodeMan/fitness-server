@@ -41,5 +41,15 @@ export class UserService {
       }
       return false;
   }
+
+  // 查询一个用户
+  async findOne(id: string): Promise<User> {
+      const res = await this.UserRepository.findOne({
+          where: {
+              id,
+          }
+      });
+      return res;
+  }
 }
 
