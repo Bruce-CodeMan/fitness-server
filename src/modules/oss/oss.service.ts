@@ -42,7 +42,10 @@ export class OSSService {
             policy: formData.policy,
             signature: formData.Signature,
             accessId: formData.OSSAccessKeyId,
+            host
           };
         return params;
     }
 }
+
+

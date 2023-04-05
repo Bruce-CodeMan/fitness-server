@@ -11,3 +11,4 @@ export class OSSResolver {
         return await this.ossService.getSignature();
     }
 }
+
