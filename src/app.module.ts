@@ -18,7 +18,7 @@ import { ApolloDriver } from "@nestjs/apollo";
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '12345678',
+      password: '123456',
       database: 'fitness',
       entities: [`${__dirname}/../modules/**/*.entity{.ts,.js}`],
       logging: true,
