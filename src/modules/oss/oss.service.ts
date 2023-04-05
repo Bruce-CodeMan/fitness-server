@@ -10,8 +10,8 @@ export class OSSService {
     // 获取签名
     async getSignature(): Promise<OssType> {
         const config = {
-            accessKeyId: "LTAI5tAdSEYpEvpD1Btmme2D",
-            accessKeySecret: "YvxxvHrHIuHqiwruyIvCNI57OiXO98",
+            accessKeyId: "xxx",
+            accessKeySecret: "xxx",
             bucket: "fitness-nestjs",
             dir: "images/",
         }
