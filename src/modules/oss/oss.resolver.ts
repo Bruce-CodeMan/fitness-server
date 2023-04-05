@@ -1,11 +1,13 @@
-import { Args, Query, Resolver } from '@nestjs/graphql';
+import { Query, Resolver } from '@nestjs/graphql';
+import { OssType } from './dto/oss.type';
+import { OSSService } from './oss.service';
 
 @Resolver()
 export class OSSResolver {
-    constructor(private readonly ossService: any){}
+    constructor(private readonly ossService: OSSService){}
 
-    @Query(() => String, { description: '获取oss相关信息' })
-    async find(@Args('id') id: string): Promise<string> {
-        return await this.ossService.find(id);
+    @Query(() => OssType, { description: '获取oss相关信息' })
+    async getOSSInfo(): Promise<OssType> {
+        return await this.ossService.getSignature();
     }
 }

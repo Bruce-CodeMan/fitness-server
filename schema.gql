@@ -11,9 +11,26 @@ type UserType {
   account: String!
 }
 
+type OssType {
+  """过期时间"""
+  expire: String!
+
+  """策略"""
+  policy: String!
+
+  """签名"""
+  signature: String!
+
+  """key"""
+  accessId: String!
+}
+
 type Query {
   """通过 ID 查询用户"""
   find(id: String!): UserType!
+
+  """获取oss相关信息"""
+  getOSSInfo: OssType!
 }
 
 type Mutation {

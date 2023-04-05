@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { OSSResolver } from './oss.resolver';
+import { OSSService } from './oss.service';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([])],
-    providers: [],
+    imports: [],
+    providers: [OSSResolver, OSSService],
     exports: [],
 })
 
