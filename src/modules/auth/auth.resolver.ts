@@ -10,7 +10,7 @@ import { AuthService } from "./auth.service";
 export class AuthResolver {
     constructor(private readonly authService: AuthService){}
 
-    @Mutation(() => Boolean, { description: '发送短信验证码' })
+    @Mutation(() => String, { description: '发送短信验证码' })
     async sendCodeMsg(@Args('tel')tel: string): Promise<String>{
         return await this.authService.sendCodeMsg(tel);
     }

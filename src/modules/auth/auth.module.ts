@@ -3,7 +3,7 @@
  * @Author: Bruce
  * @Description: 
  */
-import { Module, ConsoleLogger } from "@nestjs/common";
+import { Module } from "@nestjs/common";
 import { AuthResolver } from "./auth.resolver";
 import { AuthService } from "./auth.service";
 
