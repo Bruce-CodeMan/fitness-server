@@ -8,6 +8,7 @@ import Dysmsapi20170525, * as $Dysmsapi20170525 from '@alicloud/dysmsapi20170525
 // 依赖的模块可通过下载工程中的模块依赖文件或右上角的获取 SDK 依赖信息查看
 import OpenApi, * as $OpenApi from '@alicloud/openapi-client';
 import Util, * as $Util from '@alicloud/tea-util';
+import { getRandomCode } from "src/shared/utils";
 
 @Injectable()
 export class AuthService {
@@ -15,6 +16,7 @@ export class AuthService {
 
     // 发送短信验证码
     async sendCodeMsg(tel: string): Promise<String> {
+        const code = getRandomCode();
         const config = new $OpenApi.Config({
             // 必填，您的 AccessKey ID
             accessKeyId: '',
@@ -28,7 +30,7 @@ export class AuthService {
         signName: "徐凯个人博客",
         templateCode: "SMS_275350904",
         phoneNumbers: tel,
-        templateParam: "{\"code\":\"1234\"}",
+        templateParam: code,
         });
         const runtime = new $Util.RuntimeOptions({ });
         try {
