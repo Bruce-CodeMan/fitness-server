@@ -1,6 +1,12 @@
+/*
+ * @Date: 2023-04-06 13:23:17
+ * @Author: Bruce
+ * @Description: 
+ */
 import { Injectable } from "@nestjs/common";
 import * as OSS from 'ali-oss';
 import * as dayjs from 'dayjs';
+import { ACCESS_KEY, ACCESS_KEY_SECRET } from "src/common/constants/aliyun";
 import { OssType } from "./dto/oss.type";
 
 
@@ -10,8 +16,8 @@ export class OSSService {
     // 获取签名
     async getSignature(): Promise<OssType> {
         const config = {
-            accessKeyId: "xxx",
-            accessKeySecret: "xxx",
+            accessKeyId: ACCESS_KEY,
+            accessKeySecret: ACCESS_KEY_SECRET,
             bucket: "fitness-nestjs",
             dir: "images/",
         }

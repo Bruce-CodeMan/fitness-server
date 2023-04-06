@@ -9,6 +9,7 @@ import Dysmsapi20170525, * as $Dysmsapi20170525 from '@alicloud/dysmsapi20170525
 import OpenApi, * as $OpenApi from '@alicloud/openapi-client';
 import Util, * as $Util from '@alicloud/tea-util';
 import { getRandomCode } from "src/shared/utils";
+import { SIGN_NAME, TEMPLATE_CODE } from "src/common/constants/aliyun";
 
 @Injectable()
 export class AuthService {
@@ -27,8 +28,8 @@ export class AuthService {
         config.endpoint = `dysmsapi.aliyuncs.com`;
         const client = new Dysmsapi20170525(config);
         const sendSmsRequest = new $Dysmsapi20170525.SendSmsRequest({
-        signName: "徐凯个人博客",
-        templateCode: "SMS_275350904",
+        signName: SIGN_NAME,
+        templateCode: TEMPLATE_CODE,
         phoneNumbers: tel,
         templateParam: code,
         });
