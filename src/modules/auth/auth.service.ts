@@ -10,6 +10,7 @@ import { getRandomCode } from "src/shared/utils";
 import { SIGN_NAME, TEMPLATE_CODE } from "src/common/constants/aliyun";
 import { msgClient } from "src/shared/utils/msg";
 import { UserService } from "../user/user.service";
+import * as dayjs from 'dayjs';
 
 @Injectable()
 export class AuthService {
@@ -17,6 +18,16 @@ export class AuthService {
 
     // 发送短信验证码
     async sendCodeMsg(tel: string): Promise<boolean> {
+
+        // 拿到上次发送验证码的时间,查看间隔是否超过60秒
+        const user = await this.userService.findByTel(tel);
+        if(user) {
+            const diffTime = dayjs().diff(dayjs(user.codeCreatetime))
+            if(diffTime < 60 * 1000) {
+                return false;
+            }
+        }
+
         const code = getRandomCode();
         
         const sendSmsRequest = new Dysmsapi.SendSmsRequest({
