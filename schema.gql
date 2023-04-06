@@ -47,6 +47,9 @@ type Mutation {
 
   """发送短信验证码"""
   sendCodeMsg(tel: String!): Boolean!
+
+  """登录"""
+  login(tel: String!, code: String!): Boolean!
 }
 
 input UserInput {
