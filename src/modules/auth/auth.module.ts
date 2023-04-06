@@ -4,12 +4,15 @@
  * @Description: 
  */
 import { Module } from "@nestjs/common";
+import { TypeOrmModule } from "@nestjs/typeorm";
 import { AuthResolver } from "./auth.resolver";
 import { AuthService } from "./auth.service";
+import { User } from "../user/models/user.entity";
+import { UserService } from "../user/user.service";
 
 @Module({
-    imports: [],
-    providers: [AuthService, AuthResolver],
+    imports: [TypeOrmModule.forFeature([User])],
+    providers: [AuthService, AuthResolver, UserService],
     exports: []
 })
 

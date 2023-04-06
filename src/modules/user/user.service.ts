@@ -51,4 +51,24 @@ export class UserService {
       });
       return res;
   }
+
+  // 通过手机号去查询一个用户
+  async findByTel(tel: string): Promise<User> {
+      const res = await this.UserRepository.findOne({
+          where: {
+              tel,
+          }
+      });
+      return res;
+  }
+
+  // 添加验证码
+  async updateCode(id: string, code: string): Promise<boolean> {
+      const res = await this.UserRepository.update(id, { code, codeCreatetime: new Date() });
+      if(res.affected > 0) {
+          return true;
+      }else{
+          return false;
+      }
+  }
 }

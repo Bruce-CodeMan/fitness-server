@@ -1,3 +1,8 @@
+/*
+ * @Date: 2023-03-31 09:03:20
+ * @Author: Bruce
+ * @Description: 
+ */
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 import { IsNotEmpty } from "class-validator";
 
@@ -35,5 +40,17 @@ export class User {
         nullable: true
     })
     account: string;
+
+    @Column({
+        comment: "验证码",
+        nullable: true
+    })
+    code: string;
+
+    @Column({
+        comment: "验证码生成时间",
+        nullable: true
+    })
+    codeCreatetime: Date;
 }
 
