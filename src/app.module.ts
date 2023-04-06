@@ -11,6 +11,7 @@ import { UserModule } from "./modules/user/user.module";
 import { GraphQLModule } from "@nestjs/graphql";
 import { ApolloDriver } from "@nestjs/apollo";
 import { OSSModule } from "./modules/oss/oss.module";
+import { AuthModule } from "./modules/auth/auth.module";
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import { OSSModule } from "./modules/oss/oss.module";
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '123456',
+      password: '12345678',
       database: 'fitness',
       entities: [`${__dirname}/../modules/**/*.entity{.ts,.js}`],
       logging: true,
@@ -31,7 +32,8 @@ import { OSSModule } from "./modules/oss/oss.module";
       autoSchemaFile: "./schema.gql",
     }),
     UserModule,
-    OSSModule
+    OSSModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
