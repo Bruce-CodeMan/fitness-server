@@ -7,8 +7,8 @@ import { Args, Mutation, Resolver } from "@nestjs/graphql";
 import { AuthService } from "./auth.service";
 import { UserService } from "../user/user.service";
 import * as dayjs from "dayjs";
-import { Result } from "src/common/dto/result.type";
-import { ACCOUNT_NOT_EXIST, CODE_EXPIRE, CODE_NOT_EXIST, LOGIN_ERR, SUCCESS } from "src/common/constants/code";
+import { Result } from "@/common/dto/result.type";
+import { ACCOUNT_NOT_EXIST, CODE_EXPIRE, CODE_NOT_EXIST, LOGIN_ERR, SUCCESS } from "@/common/constants/code";
 
 @Resolver()
 export class AuthResolver {

@@ -6,13 +6,13 @@
 import { Injectable } from "@nestjs/common";
 import * as Dysmsapi from '@alicloud/dysmsapi20170525';
 import Util, * as Utils from '@alicloud/tea-util';
-import { getRandomCode } from "src/shared/utils";
-import { SIGN_NAME, TEMPLATE_CODE } from "src/common/constants/aliyun";
-import { msgClient } from "src/shared/utils/msg";
+import { getRandomCode } from "@/shared/utils";
+import { SIGN_NAME, TEMPLATE_CODE } from "@/common/constants/aliyun";
+import { msgClient } from "@/shared/utils/msg";
 import { UserService } from "../user/user.service";
 import * as dayjs from 'dayjs';
-import { Result } from "src/common/dto/result.type";
-import { CODE_NOT_EXPIRE, CREATE_ERR, SUCCESS, UPDATE_ERR } from "src/common/constants/code";
+import { Result } from "@/common/dto/result.type";
+import { CODE_NOT_EXPIRE, CREATE_ERR, SUCCESS, UPDATE_ERR } from "@/common/constants/code";
 
 @Injectable()
 export class AuthService {

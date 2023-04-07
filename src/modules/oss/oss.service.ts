@@ -6,7 +6,7 @@
 import { Injectable } from "@nestjs/common";
 import * as OSS from 'ali-oss';
 import * as dayjs from 'dayjs';
-import { ACCESS_KEY, ACCESS_KEY_SECRET } from "src/common/constants/aliyun";
+import { ACCESS_KEY, ACCESS_KEY_SECRET } from "@/common/constants/aliyun";
 import { OssType } from "./dto/oss.type";
 
 

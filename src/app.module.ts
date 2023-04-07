@@ -12,16 +12,17 @@ import { GraphQLModule } from "@nestjs/graphql";
 import { ApolloDriver } from "@nestjs/apollo";
 import { OSSModule } from "./modules/oss/oss.module";
 import { AuthModule } from "./modules/auth/auth.module";
+import { DATA_BASE, HOST, PASS_WORD, PORT, TYPE, USER_NAME } from "./common/constants/mysql";
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: '12345678',
-      database: 'fitness',
+      type: TYPE,
+      host: HOST,
+      port: PORT,
+      username: USER_NAME,
+      password: PASS_WORD,
+      database: DATA_BASE,
       entities: [`${__dirname}/../modules/**/*.entity{.ts,.js}`],
       logging: true,
       synchronize: true,
