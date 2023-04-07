@@ -20,7 +20,7 @@ export class AuthService {
 
     // 发送短信验证码
     async sendCodeMsg(tel: string): Promise<Result> {
-
+        console.log("tel:", tel);
         // 拿到上次发送验证码的时间,查看间隔是否超过60秒
         const user = await this.userService.findByTel(tel);
         if(user) {

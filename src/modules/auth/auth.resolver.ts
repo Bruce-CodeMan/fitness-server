@@ -9,11 +9,13 @@ import { UserService } from "../user/user.service";
 import * as dayjs from "dayjs";
 import { Result } from "@/common/dto/result.type";
 import { ACCOUNT_NOT_EXIST, CODE_EXPIRE, CODE_NOT_EXIST, LOGIN_ERR, SUCCESS } from "@/common/constants/code";
+import { JwtService } from "@nestjs/jwt";
 
 @Resolver()
 export class AuthResolver {
     constructor(private readonly authService: AuthService,
-                private readonly userService: UserService){}
+                private readonly userService: UserService,
+                private readonly jwtService: JwtService){}
 
     @Mutation(() => Result, { description: '发送短信验证码' })
     async sendCodeMsg(
@@ -47,9 +49,13 @@ export class AuthResolver {
             };
         }
         if (user.code === code) {
+            const token = this.jwtService.sign({
+                id: user.id
+            })
             return {
                 code: SUCCESS,
-                message: "login success"
+                message: "login success",
+                data: token
             };
         }
         return {

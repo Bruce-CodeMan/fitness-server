@@ -13,7 +13,7 @@ import { JWT_SECRET } from '@/common/constants/jwt';
 export class JwtStrategy extends PassportStrategy(Strategy) {
     constructor(){
         super({
-            jwtFromRequest: ExtractJwt.fromAuthHeaderAsBeareToken(),
+            jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
             secretOrKey: JWT_SECRET,
         });
     }
