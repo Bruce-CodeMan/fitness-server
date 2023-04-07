@@ -58,3 +58,17 @@ export function createResults<T>(
     }
     return Results;
 }
+
+@ObjectType()
+export class Result {
+    @Field(() => Int)
+    code: number;
+
+    @Field(() => String)
+    message: string;
+
+    @Field(() => String, { nullable: true })
+    data?: string;
+}
+
+
