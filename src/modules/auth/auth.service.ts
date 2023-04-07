@@ -11,20 +11,25 @@ import { SIGN_NAME, TEMPLATE_CODE } from "src/common/constants/aliyun";
 import { msgClient } from "src/shared/utils/msg";
 import { UserService } from "../user/user.service";
 import * as dayjs from 'dayjs';
+import { Result } from "src/common/dto/result.type";
+import { CODE_NOT_EXPIRE, CREATE_ERR, SUCCESS, UPDATE_ERR } from "src/common/constants/code";
 
 @Injectable()
 export class AuthService {
     constructor(private readonly userService: UserService){}
 
     // 发送短信验证码
-    async sendCodeMsg(tel: string): Promise<boolean> {
+    async sendCodeMsg(tel: string): Promise<Result> {
 
         // 拿到上次发送验证码的时间,查看间隔是否超过60秒
         const user = await this.userService.findByTel(tel);
         if(user) {
             const diffTime = dayjs().diff(dayjs(user.codeCreatetime))
             if(diffTime < 60 * 1000) {
-                return false;
+                return {
+                    code: CODE_NOT_EXPIRE,
+                    message: "code is not expired"
+                };
             }
         }
 
@@ -45,16 +50,28 @@ export class AuthService {
             if(user) {
                 const result = await this.userService.updateCode(user.id, code);
                 if(result) {
-                    return true;
+                    return {
+                        code: SUCCESS,
+                        message:"success"
+                    };
                 }else {
-                    return false;
+                    return {
+                        code: UPDATE_ERR,
+                        message: "update code ERROR"
+                    };
                 }
             }
             const result = await this.userService.create({tel, code, codeCreatetime: new Date()})
             if(result){
-                return true;
+                return {
+                    code: SUCCESS,
+                    message: "success"
+                };
             }else{
-                return false;
+                return {
+                    code: CREATE_ERR,
+                    message: "create new account ERR"
+                };
             }
         } catch (error) {
             // 如有需要，请打印 error

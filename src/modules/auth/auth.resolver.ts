@@ -7,16 +7,17 @@ import { Args, Mutation, Resolver } from "@nestjs/graphql";
 import { AuthService } from "./auth.service";
 import { UserService } from "../user/user.service";
 import * as dayjs from "dayjs";
+import { Result } from "src/common/dto/result.type";
 
 @Resolver()
 export class AuthResolver {
     constructor(private readonly authService: AuthService,
                 private readonly userService: UserService){}
 
-    @Mutation(() => Boolean, { description: '发送短信验证码' })
+    @Mutation(() => Result, { description: '发送短信验证码' })
     async sendCodeMsg(
         @Args('tel')tel: string
-    ): Promise<boolean>{
+    ): Promise<Result>{
         return await this.authService.sendCodeMsg(tel);
     }
 

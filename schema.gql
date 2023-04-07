@@ -28,6 +28,12 @@ type OssType {
   host: String!
 }
 
+type Result {
+  code: Int!
+  message: String!
+  data: String
+}
+
 type Query {
   """通过 ID 查询用户"""
   find(id: String!): UserType!
@@ -46,7 +52,7 @@ type Mutation {
   del(id: String!): Boolean!
 
   """发送短信验证码"""
-  sendCodeMsg(tel: String!): Boolean!
+  sendCodeMsg(tel: String!): Result!
 
   """登录"""
   login(tel: String!, code: String!): Boolean!
