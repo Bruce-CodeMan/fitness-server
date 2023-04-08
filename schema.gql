@@ -38,6 +38,9 @@ type Query {
   """通过 ID 查询用户"""
   find(id: String!): UserType!
 
+  """使用 ID 查询用户"""
+  getUserInfo: UserType!
+
   """获取oss相关信息"""
   getOSSInfo: OssType!
 }

@@ -3,7 +3,7 @@
  * @Author: Bruce
  * @Description: 
  */
-import { Args, Query, Mutation, Resolver } from "@nestjs/graphql";
+import { Args, Query, Mutation, Resolver, Context } from "@nestjs/graphql";
 import { UserInput } from "./dto/user-input.type";
 import { UserType } from "./dto/user.type";
 import { UserService } from "./user.service";
@@ -23,6 +23,13 @@ export class UserResolver {
     // 通过ID查询一个用户
     @Query(() => UserType, { description: "通过 ID 查询用户" })
     async find(@Args('id') id: string): Promise<UserType> {
+        return await this.userService.findOne(id);
+    }
+
+    // 通过ID查询一个用户
+    @Query(() => UserType, { description: "使用 ID 查询用户" })
+    async getUserInfo(@Context() ctx: any): Promise<UserType> {
+        const id = ctx.req.user.id;
         return await this.userService.findOne(id);
     }
 
