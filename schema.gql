@@ -9,6 +9,9 @@ type UserType {
 
   """账户信息"""
   account: String!
+
+  """手机号"""
+  tel: String!
 }
 
 type OssType {
