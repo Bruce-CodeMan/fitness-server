@@ -7,8 +7,11 @@ import { Args, Query, Mutation, Resolver, Context } from "@nestjs/graphql";
 import { UserInput } from "./dto/user-input.type";
 import { UserType } from "./dto/user.type";
 import { UserService } from "./user.service";
+import { UseGuards } from '@nestjs/common';
+import { GqlAuthGuard } from '@/common/guards/auth.guards';
 
 @Resolver()
+@UseGuards(GqlAuthGuard)
 export class UserResolver {
     constructor(private readonly userService: UserService){}
 
@@ -29,6 +32,7 @@ export class UserResolver {
     // 通过ID查询一个用户
     @Query(() => UserType, { description: "使用 ID 查询用户" })
     async getUserInfo(@Context() ctx: any): Promise<UserType> {
+        console.log(ctx.req.user)
         const id = ctx.req.user.id;
         return await this.userService.findOne(id);
     }
