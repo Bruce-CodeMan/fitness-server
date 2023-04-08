@@ -4,4 +4,4 @@
  * @Description: 
  */
 export const JWT_SECRET = 'BruseHsu'
-export const JWT_EXPIRATION = '60s'
+export const JWT_EXPIRATION = 60 * 60 * 24 * 7 + 's'
