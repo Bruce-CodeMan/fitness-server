@@ -69,6 +69,12 @@ type Mutation {
 }
 
 input UserInput {
+  """昵称"""
   name: String!
+
+  """简介"""
   desc: String!
+
+  """头像"""
+  avatar: String!
 }
