@@ -16,5 +16,8 @@ export class OssType {
     
     @Field({ description: '域名' })
     host: string;
+
+    @Field({ description: '文件夹' })
+    dir: string;
 }
 

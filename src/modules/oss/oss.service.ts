@@ -21,7 +21,6 @@ export class OSSService {
             bucket: "fitness-nestjs",
             dir: "images/",
         }
-
         const client = new OSS(config);
 
         const date = new Date();
@@ -48,7 +47,8 @@ export class OSSService {
             policy: formData.policy,
             signature: formData.Signature,
             accessId: formData.OSSAccessKeyId,
-            host
+            host,
+            dir: 'images/'
           };
         return params;
     }
