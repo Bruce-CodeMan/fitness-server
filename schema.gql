@@ -4,11 +4,15 @@
 
 type UserType {
   id: String!
+
+  """昵称"""
   name: String!
+
+  """描述"""
   desc: String!
 
-  """账户信息"""
-  account: String!
+  """头像"""
+  avatar: String
 
   """手机号"""
   tel: String!

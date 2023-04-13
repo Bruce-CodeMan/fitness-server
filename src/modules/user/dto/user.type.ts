@@ -10,14 +10,14 @@ export class UserType {
     @Field()
     id?: string;
 
-    @Field()
+    @Field({ description: "昵称" })
     name: string;
     
-    @Field()
+    @Field({ description: "描述" })
     desc: string;
     
-    @Field({ description: "账户信息" })
-    account: string;
+    @Field({ description: "头像", nullable: true })
+    avatar: string;
 
     @Field({ description: "手机号" })
     tel: string;

@@ -10,6 +10,7 @@ import { IsNotEmpty } from "class-validator";
 export class User {
     @PrimaryGeneratedColumn('uuid')
     id: string;
+
     @Column({
         comment: '昵称',
         default: ''
@@ -22,6 +23,12 @@ export class User {
         default: ''
     })
     desc: string;
+
+    @Column({
+        comment: "头像",
+        default: ''
+    })
+    avatar: string;
 
     @Column({
         comment: "手机号",
