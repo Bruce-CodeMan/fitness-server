@@ -13,6 +13,6 @@ export class UserInput{
     @Field({ description: "简介" })
     desc: string;
 
-    @Field({ description: "头像" })
+    @Field({ description: "头像", nullable:true })
     avatar: string;
 }

@@ -18,6 +18,12 @@ type UserType {
   tel: String!
 }
 
+type Result {
+  code: Int!
+  message: String!
+  data: String
+}
+
 type OssType {
   """过期时间"""
   expire: String!
@@ -35,12 +41,6 @@ type OssType {
   host: String!
 }
 
-type Result {
-  code: Int!
-  message: String!
-  data: String
-}
-
 type Query {
   """通过 ID 查询用户"""
   find(id: String!): UserType!
@@ -56,7 +56,7 @@ type Mutation {
   create(params: UserInput!): Boolean!
 
   """通过 ID 更新用户"""
-  update(id: String!, params: UserInput!): Boolean!
+  update(id: String!, params: UserInput!): Result!
 
   """通过 ID 删除用户"""
   del(id: String!): Boolean!
@@ -76,5 +76,5 @@ input UserInput {
   desc: String!
 
   """头像"""
-  avatar: String!
+  avatar: String
 }

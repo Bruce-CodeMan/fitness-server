@@ -9,6 +9,9 @@ import { UserType } from "./dto/user.type";
 import { UserService } from "./user.service";
 import { UseGuards } from '@nestjs/common';
 import { GqlAuthGuard } from '@/common/guards/auth.guards';
+import { Result } from "@/common/dto/result.type";
+import { SUCCESS, UPDATE_ERR } from "@/common/constants/code";
+
 
 @Resolver()
 @UseGuards(GqlAuthGuard)
@@ -38,12 +41,22 @@ export class UserResolver {
     }
 
     // 通过ID更新一个用户
-    @Mutation(() => Boolean, { description: "通过 ID 更新用户" })
+    @Mutation(() => Result, { description: "通过 ID 更新用户" })
     async update(
         @Args('id') id: string,
         @Args('params') params: UserInput
-    ): Promise<boolean> {
-        return await this.userService.update(id, params);
+    ): Promise<Result> {
+        const res =  await this.userService.update(id, params);
+        if(res) {
+            return {
+                code: SUCCESS,
+                message: "更新成功"
+            }   
+        }
+        return {
+            code: UPDATE_ERR,
+            message: "更新失败"
+        }
     }
 
     // 通过ID删除一个用户
