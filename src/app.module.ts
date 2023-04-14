@@ -12,6 +12,7 @@ import { GraphQLModule } from "@nestjs/graphql";
 import { ApolloDriver } from "@nestjs/apollo";
 import { OSSModule } from "./modules/oss/oss.module";
 import { AuthModule } from "./modules/auth/auth.module";
+import { StudentModule } from "./modules/student/student.module";
 import { DATA_BASE, HOST, PASS_WORD, PORT, TYPE, USER_NAME } from "./common/constants/mysql";
 
 @Module({
@@ -34,7 +35,8 @@ import { DATA_BASE, HOST, PASS_WORD, PORT, TYPE, USER_NAME } from "./common/cons
     }),
     UserModule,
     OSSModule,
-    AuthModule
+    AuthModule,
+    StudentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
