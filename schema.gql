@@ -69,6 +69,7 @@ type Mutation {
 
   """登录"""
   login(tel: String!, code: String!): Result!
+  createStudent1(params: StudentInput!): Boolean!
 }
 
 input UserInput {
@@ -80,4 +81,15 @@ input UserInput {
 
   """头像"""
   avatar: String
+}
+
+input StudentInput {
+  """昵称"""
+  name: String!
+
+  """手机号"""
+  tel: String!
+
+  """头像"""
+  avatar: String!
 }
