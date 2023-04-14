@@ -35,7 +35,6 @@ export class UserResolver {
     // 通过ID查询一个用户
     @Query(() => UserType, { description: "使用 ID 查询用户" })
     async getUserInfo(@Context() ctx: any): Promise<UserType> {
-        console.log(ctx.req.user)
         const id = ctx.req.user.id;
         return await this.userService.findOne(id);
     }
