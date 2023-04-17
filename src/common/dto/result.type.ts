@@ -7,13 +7,13 @@ import { Page } from './page.type';
 import { ClassType } from 'type-graphql'; 
 import { Field, Int, ObjectType } from "@nestjs/graphql";
 
-interface IResult<T> {
+export interface IResult<T> {
     code: number;
     message: string;
     data?: T;
 }
 
-interface IResults<T> {
+export interface IResults<T> {
     code: number;
     message: string;
     data?: T[];
