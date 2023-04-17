@@ -54,7 +54,7 @@ export class StudentService {
     }
 
     // 分页查询学员信息
-    async findStudents({start, length}: {start:number, length: number}): Promise<[Student[], number]> {
+    async findStudents({start, length}: {start:number;length: number;}): Promise<[Student[], number]> {
         return this.studentRepository.findAndCount({
             take: length,
             skip: start,

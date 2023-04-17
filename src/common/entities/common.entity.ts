@@ -25,7 +25,7 @@ export class CommonEntity {
     updatedBy: string;
 
     @Column({ comment: "删除时间", type: "timestamp", nullable: true })
-    @DeleteDateColumn()
+    @DeleteDateColumn()  // 软删除
     @IsDate()
     @IsOptional()
     deletedAt: Date;

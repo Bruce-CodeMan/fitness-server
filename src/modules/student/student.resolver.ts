@@ -16,6 +16,12 @@ import { CurUserId } from "@/common/decorators/current-user.decorator";
 export class StudentResolver {
     constructor(private readonly studentService: StudentService) {}
 
+    // 创建学员
+    @Mutation(() => Boolean)
+    async createStudent(@Args('params') params: StudentInput): Promise<boolean> {
+        return await this.studentService.create(params);
+    }
+
     // 通过ID查找学员信息
     @Query(() => StudentResult)
     async getStudentInfo(@CurUserId('id') id: string): Promise<StudentResult> {

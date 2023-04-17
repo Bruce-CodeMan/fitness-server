@@ -20,9 +20,9 @@ export class Student extends CommonEntity{
     @Column({ comment: "头像", nullable: true })
     avatar: string
 
-    @Column({ comment: "密码", })
+    @Column({ comment: "密码", nullable: true})
     password: string
 
-    @Column({ comment: "账号", })
+    @Column({ comment: "账号", nullable: true})
     account: string
 }
