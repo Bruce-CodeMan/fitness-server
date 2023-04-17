@@ -3,16 +3,28 @@
  * @Author: Bruce
  * @Description: 
  */
-import { Args, Mutation, Resolver } from "@nestjs/graphql";
+import { Args, Resolver, Query } from "@nestjs/graphql";
 import { StudentService } from "./student.service";
-import { StudentInput } from "./dto/student-input.type";
+import { StudentResult } from "./dto/student-result.output";
+import { STUDENT_NOT_EXIST, SUCCESS } from "@/common/constants/code";
 
 @Resolver()
 export class StudentResolver {
     constructor(private readonly studentService: StudentService) {}
 
-    @Mutation(() => Boolean)
-    async createStudent1(@Args('params') params: StudentInput): Promise<boolean>{
-        return await this.studentService.create(params);
+    @Query(() => StudentResult)
+    async getStudentInfo(@Args('id') id: string): Promise<StudentResult> {
+        const result = await this.studentService.findById(id);
+        if(result) {
+            return {
+                code: SUCCESS,
+                data: result,
+                message: "获取成功"
+            }
+        }
+        return {
+            code: STUDENT_NOT_EXIST,
+            message: "用户不存在"
+        }
     }
 }

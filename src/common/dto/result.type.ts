@@ -25,7 +25,7 @@ export function createResult<T>(
 ): ClassType<IResult<T>> {
 
     @ObjectType()
-    class Result {
+    class Result implements IResult<T>{
       @Field(() => Int)
       code: number;
 

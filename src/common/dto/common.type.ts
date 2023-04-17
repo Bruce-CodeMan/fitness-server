@@ -7,24 +7,24 @@ import { Field, ObjectType } from "@nestjs/graphql";
 
 @ObjectType()
 export class CommonType {
-    @Field()
-    id: string;
+  @Field()
+  id: string;
 
-    @Field()
-    createdAt: Date;
+  @Field()
+  createdAt: Date;
 
-    @Field({ nullable: true })
-    createdBy: string;
+  @Field({ nullable: true })
+  createdBy: string;
 
-    @Field()
-    updatedAt: Date;
+  @Field({ nullable: true })
+  updatedAt: Date;
 
-    @Field()
-    updatedBy: string;
+  @Field({ nullable: true })
+  updatedBy: string;
 
-    @Field()
-    deletedAt: Date;
+  @Field({ nullable: true })
+  deletedAt: Date;
 
-    @Field()
-    deletedBy: string;
+  @Field({ nullable: true })
+  deletedBy: string;
 }

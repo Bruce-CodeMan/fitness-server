@@ -11,3 +11,4 @@ export const ACCOUNT_NOT_EXIST = 10004;
 export const CODE_NOT_EXIST = 10005;
 export const CODE_EXPIRE = 10006;
 export const LOGIN_ERR = 10007;
+export const STUDENT_NOT_EXIST = 10008;
