@@ -23,6 +23,6 @@ export class Student extends CommonEntity{
     @Column({ comment: "密码", nullable: true})
     password: string
 
-    @Column({ comment: "账号", nullable: true})
+    @Column({ comment: "账号", nullable:true})
     account: string
 }
