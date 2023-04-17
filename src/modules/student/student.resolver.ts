@@ -5,7 +5,7 @@
  */
 import { Args, Resolver, Query, Mutation } from "@nestjs/graphql";
 import { StudentService } from "./student.service";
-import { StudentResult, StudentResults } from "./dto/student-result.output";
+import { StudentResult, StudentResults } from "./dto/student-output.type";
 import { STUDENT_NOT_EXIST, SUCCESS } from "@/common/constants/code";
 import { PageInput } from "../../common/dto/page-input";
 import { StudentInput } from "./dto/student-input.type";

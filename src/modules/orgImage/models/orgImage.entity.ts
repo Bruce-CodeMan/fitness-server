@@ -21,5 +21,11 @@ export class OrgImage {
 
     @ManyToOne(() => Organization, (organiztion)=> organiztion.orgFrontImg)
     orgIdForFront: Organization
+
+    @ManyToOne(() => Organization, (organiztion)=> organiztion.orgRoomImg)
+    orgIdForRoom: Organization
+
+    @ManyToOne(() => Organization, (organiztion)=> organiztion.orgOtherImg)
+    orgIdForOther: Organization
 }
 

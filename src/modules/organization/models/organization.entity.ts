@@ -43,6 +43,12 @@ export class Organization extends CommonEntity {
 
     @OneToMany(() => OrgImage, (orgImage) => orgImage.orgIdForFront)
     orgFrontImg?: OrgImage[];
+
+    @OneToMany(() => OrgImage, (orgImage) => orgImage.orgIdForRoom)
+    orgRoomImg?: OrgImage[];
+
+    @OneToMany(() => OrgImage, (orgImage) => orgImage.orgIdForOther)
+    orgOtherImg?: OrgImage[];
 }
 
 
