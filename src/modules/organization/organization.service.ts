@@ -88,7 +88,7 @@ export class OrganizationService {
         })
         if (res) {
             const result = await this.organizationRepository.softDelete(id);
-            if(res.affected > 0) {
+            if(result.affected > 0) {
                 return true;
             }
             return false;
