@@ -18,7 +18,7 @@ export class StudentResolver {
 
     // 通过ID查找学员信息
     @Query(() => StudentResult)
-    async getStudentInfo(@Args('id') id: string): Promise<StudentResult> {
+    async getStudentInfo(@CurUserId('id') id: string): Promise<StudentResult> {
         const result = await this.studentService.findById(id);
         if(result) {
             return {
