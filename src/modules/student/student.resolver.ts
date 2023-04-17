@@ -10,6 +10,7 @@ import { STUDENT_NOT_EXIST, SUCCESS } from "@/common/constants/code";
 import { PageInput } from "../../common/dto/page-input";
 import { StudentInput } from "./dto/student-input.type";
 import { Result } from "@/common/dto/result.type";
+import { CurUserId } from "@/common/decorators/current-user.decorator";
 
 @Resolver()
 export class StudentResolver {
@@ -32,9 +33,9 @@ export class StudentResolver {
         }
     }
 
-    // 更新学员信息
+    // 更新学员信息, CurUseId是装饰器获取用户的id
     @Mutation(() => StudentResult)
-    async commitStudentInfo(@Args('params') params: StudentInput, @Args('id') id: string): Promise<Result> {
+    async commitStudentInfo(@Args('params') params: StudentInput, @CurUserId('id') id: string): Promise<Result> {
         const student = await this.studentService.findById(id);
         if(student) {
             const res = await this.studentService.updateById(student.id, params);
