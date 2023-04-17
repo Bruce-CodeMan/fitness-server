@@ -18,4 +18,8 @@ export class OrgImage {
     // 备注信息
     @Column({ comment: 'remark', nullable: true })
     remark: string;
+
+    @ManyToOne(() => Organization, (organiztion)=> organiztion.orgFrontImg)
+    orgIdForFront: Organization
 }
+

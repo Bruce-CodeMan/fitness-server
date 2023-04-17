@@ -1,4 +1,5 @@
 import { CommonEntity } from "@/common/entities/common.entity";
+import { OrgImage } from "@/modules/orgImage/models/orgImage.entity";
 import { IsNotEmpty } from "class-validator";
 import { Column, Entity, OneToMany } from "typeorm";
 
@@ -40,5 +41,8 @@ export class Organization extends CommonEntity {
     @Column({ comment: '电话', nullable: true })
     tel: string;
 
-    
+    @OneToMany(() => OrgImage, (orgImage) => orgImage.orgIdForFront)
+    orgFrontImg?: OrgImage[];
 }
+
+
