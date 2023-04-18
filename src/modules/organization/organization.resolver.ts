@@ -4,7 +4,6 @@
  * @Description: 
  */
 import { ORGANIZATION_CREATE_FAILED, SUCCESS, UPDATE_ERR } from "@/common/constants/code";
-import { CurUserId } from "@/common/decorators/current-user.decorator";
 import { PageInput } from "@/common/dto/page-input.type";
 import { Result } from "@/common/dto/result.type";
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";

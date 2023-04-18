@@ -46,13 +46,13 @@ export class Organization extends CommonEntity {
     @Column({ comment: '电话', nullable: true })
     tel: string;
 
-    @OneToMany(() => OrgImage, (orgImage) => orgImage.orgIdForFront)
+    @OneToMany(() => OrgImage, (orgImage) => orgImage.orgIdForFront, { cascade: true })
     orgFrontImg?: OrgImage[];
 
     @OneToMany(() => OrgImage, (orgImage) => orgImage.orgIdForRoom, { cascade: true })
     orgRoomImg?: OrgImage[];
 
-    @OneToMany(() => OrgImage, (orgImage) => orgImage.orgIdForOther)
+    @OneToMany(() => OrgImage, (orgImage) => orgImage.orgIdForOther, { cascade: true })
     orgOtherImg?: OrgImage[];
 }
 
