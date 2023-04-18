@@ -90,6 +90,77 @@ type StudentResults {
   page: Page
 }
 
+type OrgImageOutput {
+  id: String
+  url: String!
+  remark: String
+}
+
+type OrganizationType {
+  id: String!
+  createdAt: DateTime!
+  createdBy: String
+  updatedAt: DateTime
+  updatedBy: String
+  deletedAt: DateTime
+  deletedBy: String
+
+  """营业执照"""
+  businessLicense: String!
+
+  """法人身份证正面"""
+  identityCardFrontImg: String!
+
+  """法人身份证反面"""
+  identityCardBackImg: String!
+
+  """标签 以,分隔"""
+  tags: String
+
+  """简介"""
+  description: String
+
+  """机构名称"""
+  name: String
+
+  """logo"""
+  logo: String
+
+  """经度"""
+  longitude: String
+
+  """纬度"""
+  latitude: String
+
+  """地址"""
+  address: String
+
+  """手机号"""
+  tel: String
+
+  """封面图"""
+  orgFrontImg: [OrgImageOutput!]
+
+  """室内图"""
+  orgRoomImg: [OrgImageOutput!]
+
+  """其他图"""
+  orgOtherImg: [OrgImageOutput!]
+}
+
+type OrganizationResult {
+  code: Int!
+  message: String!
+  data: OrganizationType
+}
+
+type OrganizationResults {
+  code: Int!
+  message: String!
+  data: [OrganizationType!]
+  page: Page
+}
+
 type Query {
   """通过 ID 查询用户"""
   find(id: String!): UserType!
@@ -101,6 +172,8 @@ type Query {
   getOSSInfo: OssType!
   getStudentInfo: StudentResult!
   getStudents(page: PageInput!): StudentResults!
+  getOrganizationInfo(id: String!): OrganizationResult!
+  getOrganizations(page: PageInput!): OrganizationResults!
 }
 
 input PageInput {
@@ -124,6 +197,7 @@ type Mutation {
   login(tel: String!, code: String!): Result!
   createStudent(params: StudentInput!): Boolean!
   commitStudentInfo(params: StudentInput!): StudentResult!
+  commitOrganization(params: OrganizationInput!, id: String): OrganizationResult!
 }
 
 input UserInput {
@@ -146,4 +220,51 @@ input StudentInput {
 
   """头像"""
   avatar: String!
+}
+
+input OrganizationInput {
+  """名称"""
+  name: String!
+
+  """logo"""
+  logo: String!
+
+  """手机号"""
+  tel: String
+
+  """tags"""
+  tags: String
+
+  """longitude"""
+  longitude: String
+
+  """latitude"""
+  latitude: String
+
+  """营业执照"""
+  businessLicense: String!
+
+  """描述"""
+  description: String!
+
+  """法人身份证正面"""
+  identityCardFrontImg: String!
+
+  """法人身份证反面"""
+  identityCardBackImg: String!
+
+  """机构门面照片"""
+  orgFrontImg: [OrgImageInput!]
+
+  """机构环境照片"""
+  orgRoomImg: [OrgImageInput!]
+
+  """机构环境照片"""
+  orgOtherImg: [OrgImageInput!]
+}
+
+input OrgImageInput {
+  id: String
+  url: String!
+  remark: String
 }

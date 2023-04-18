@@ -50,7 +50,7 @@ export class OrganizationResolver {
     @Mutation(() => OrganizationResult)
     async commitOrganization(
         @Args('params') params: OrganizationInput,
-        @CurUserId() userId: string,
+        // @CurUserId() userId: string,
         @Args('id', { nullable: true }) id?: string
     ): Promise<Result> {
         if(id) {
@@ -63,7 +63,7 @@ export class OrganizationResolver {
             }
             const res = await this.organizationService.updateById(id, {
                 ...params,
-                updatedBy: userId
+                updatedBy: "b4b10763-8215-4dc7-b6be-a94bade65b49"
             });
             if(res) {
                 return {
@@ -79,7 +79,7 @@ export class OrganizationResolver {
         // 开始创建门店信息
         const res = await this.organizationService.create({
             ...params,
-            createdAt: userId
+            createdAt: "b4b10763-8215-4dc7-b6be-a94bade65b49"
         })
         if (res) {
             return {

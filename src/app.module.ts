@@ -13,6 +13,7 @@ import { ApolloDriver } from "@nestjs/apollo";
 import { OSSModule } from "./modules/oss/oss.module";
 import { AuthModule } from "./modules/auth/auth.module";
 import { StudentModule } from "./modules/student/student.module";
+import { OrganizationModule } from "./modules/organization/organization.module";
 import { DATA_BASE, HOST, PASS_WORD, PORT, TYPE, USER_NAME } from "./common/constants/mysql";
 
 @Module({
@@ -37,6 +38,7 @@ import { DATA_BASE, HOST, PASS_WORD, PORT, TYPE, USER_NAME } from "./common/cons
     OSSModule,
     AuthModule,
     StudentModule,
+    OrganizationModule
   ],
   controllers: [AppController],
   providers: [AppService],

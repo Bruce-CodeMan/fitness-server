@@ -1,3 +1,8 @@
+/*
+ * @Date: 2023-04-18 08:56:27
+ * @Author: Bruce
+ * @Description: 
+ */
 import { CommonEntity } from "@/common/entities/common.entity";
 import { OrgImage } from "@/modules/orgImage/models/orgImage.entity";
 import { IsNotEmpty } from "class-validator";
@@ -44,7 +49,7 @@ export class Organization extends CommonEntity {
     @OneToMany(() => OrgImage, (orgImage) => orgImage.orgIdForFront)
     orgFrontImg?: OrgImage[];
 
-    @OneToMany(() => OrgImage, (orgImage) => orgImage.orgIdForRoom)
+    @OneToMany(() => OrgImage, (orgImage) => orgImage.orgIdForRoom, { cascade: true })
     orgRoomImg?: OrgImage[];
 
     @OneToMany(() => OrgImage, (orgImage) => orgImage.orgIdForOther)
