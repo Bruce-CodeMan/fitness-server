@@ -66,7 +66,7 @@ export class OrganizationService {
      *  @param length 每页的数量
      *  @returns [Organization[], number]
      */
-    async findStudents({start, length}: {start:number; length: number;}): Promise<[Organization[], number]> {
+    async findOrganizations({start, length}: {start:number; length: number;}): Promise<[Organization[], number]> {
         return this.organizationRepository.findAndCount({
             take: length,
             skip: start,

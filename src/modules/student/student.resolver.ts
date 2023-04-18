@@ -7,7 +7,7 @@ import { Args, Resolver, Query, Mutation } from "@nestjs/graphql";
 import { StudentService } from "./student.service";
 import { StudentResult, StudentResults } from "./dto/student-output.type";
 import { STUDENT_NOT_EXIST, SUCCESS } from "@/common/constants/code";
-import { PageInput } from "../../common/dto/page-input";
+import { PageInput } from "../../common/dto/page-input.type";
 import { StudentInput } from "./dto/student-input.type";
 import { Result } from "@/common/dto/result.type";
 import { CurUserId } from "@/common/decorators/current-user.decorator";

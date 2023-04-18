@@ -5,11 +5,12 @@
  */
 import { ORGANIZATION_CREATE_FAILED, SUCCESS, UPDATE_ERR } from "@/common/constants/code";
 import { CurUserId } from "@/common/decorators/current-user.decorator";
+import { PageInput } from "@/common/dto/page-input.type";
 import { Result } from "@/common/dto/result.type";
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 import { ORGANIZATION_NOT_EXIST } from "../../common/constants/code";
 import { OrganizationInput } from "./dto/organization-input.type";
-import { OrganizationResult } from "./dto/organization-output.type";
+import { OrganizationResult, OrganizationResults } from "./dto/organization-output.type";
 import { OrganizationService } from "./organization.service";
 
 @Resolver()
@@ -89,6 +90,30 @@ export class OrganizationResolver {
         return {
             code: ORGANIZATION_CREATE_FAILED,
             message: '创建门店信息失败'
+        }
+    }
+
+    /**
+     * 分页获取门店信息
+     * @param page pageNum: 起始页, pageSize: 每页数目
+     * @returns 
+     */
+    @Query(() => OrganizationResults)
+    async getOrganizations(@Args('page') page: PageInput): Promise<OrganizationResults> {
+        const { pageNum, pageSize } = page;
+        const [ results, total ] = await this.organizationService.findOrganizations({
+            start: (pageNum - 1) * pageSize + 1,
+            length: pageSize
+        })
+        return {
+            code: SUCCESS,
+            data: results,
+            page: {
+                pageNum,
+                pageSize,
+                total
+            },
+            message: '获取成功'
         }
     }
 }
