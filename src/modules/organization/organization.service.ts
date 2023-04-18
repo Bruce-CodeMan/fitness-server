@@ -73,7 +73,8 @@ export class OrganizationService {
             skip: (start - 1) * length,
             order: {
                 createdAt: 'DESC'
-            }
+            },
+            relations: ['orgFrontImg', 'orgRoomImg', 'orgOtherImg']
         })
     }
 
