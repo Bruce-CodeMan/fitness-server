@@ -39,6 +39,13 @@ export class OrganizationResolver {
         }
     }
 
+    /**
+     * 新增/修改门店信息
+     * @param params Organization的输入实体
+     * @param userId 用户的ID
+     * @param id 门店的ID,可选,如果存在说明是修改操作,如果不存在说明是创建操作
+     * @returns 
+     */
     @Mutation(() => OrganizationResult)
     async commitOrganization(
         @Args('params') params: OrganizationInput,
