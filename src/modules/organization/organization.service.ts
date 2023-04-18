@@ -35,7 +35,8 @@ export class OrganizationService {
         return this.organizationRepository.findOne({
             where: {
                 id
-            }
+            },
+            relations: ['orgFrontImg', 'orgRoomImg', 'orgOtherImg']
         })
     }
 
