@@ -5,5 +5,5 @@
  */
 export const SIGN_NAME = "徐凯个人博客";
 export const TEMPLATE_CODE = "SMS_275350904";
-export const ACCESS_KEY = "LTAI5tAdSEYpEvpD1Btmme2D";
-export const ACCESS_KEY_SECRET = "YvxxvHrHIuHqiwruyIvCNI57OiXO98";
+export const ACCESS_KEY = "xx";
+export const ACCESS_KEY_SECRET = "xx";
