@@ -3,11 +3,12 @@
  * @Author: Bruce
  * @Description: 
  */
-import { ORGANIZATION_CREATE_FAILED, SUCCESS, UPDATE_ERR } from "@/common/constants/code";
+import { ORGANIZATION_CREATE_FAILED, ORGIMAGE_DELETE_FAILED, SUCCESS, UPDATE_ERR } from "@/common/constants/code";
 import { PageInput } from "@/common/dto/page-input.type";
 import { Result } from "@/common/dto/result.type";
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 import { ORGANIZATION_NOT_EXIST } from "../../common/constants/code";
+import { OrgImageService } from "../orgImage/orgImage.service";
 import { OrganizationInput } from "./dto/organization-input.type";
 import { OrganizationResult, OrganizationResults } from "./dto/organization-output.type";
 import { OrganizationService } from "./organization.service";
@@ -16,6 +17,7 @@ import { OrganizationService } from "./organization.service";
 export class OrganizationResolver {
     constructor(
         private readonly organizationService: OrganizationService,
+        private readonly orgImageService: OrgImageService
     ){}
     
     /**
@@ -58,6 +60,13 @@ export class OrganizationResolver {
                 return {
                     code: ORGANIZATION_NOT_EXIST,
                     message: '门店信息不存在'
+                }
+            }
+            const delRes = await this.orgImageService.deleteByOrg(id);
+            if(!delRes) {
+                return {
+                    code: ORGIMAGE_DELETE_FAILED,
+                    message: '图片删除不成功,无法更新门店信息'
                 }
             }
             const res = await this.organizationService.updateById(id, {
