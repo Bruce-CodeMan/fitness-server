@@ -1,3 +1,8 @@
+/*
+ * @Date: 2023-04-18 08:56:27
+ * @Author: Bruce
+ * @Description: 
+ */
 import { CommonType } from "@/common/dto/common.type";
 import { OrgImageOutput } from "@/modules/orgImage/dto/orgImage-output.type";
 import { Field, ObjectType } from "@nestjs/graphql";
@@ -29,7 +34,7 @@ export class OrganizationType extends CommonType {
     longitude: string;
 
     @Field({ description: '纬度', nullable: true })
-    laititude: string;
+    latitude: string;
 
     @Field({ description: '地址', nullable: true })
     address?: string;

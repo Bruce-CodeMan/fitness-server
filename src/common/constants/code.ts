@@ -12,3 +12,5 @@ export const CODE_NOT_EXIST = 10005;
 export const CODE_EXPIRE = 10006;
 export const LOGIN_ERR = 10007;
 export const STUDENT_NOT_EXIST = 10008;
+export const ORGANIZATION_NOT_EXIST = 10009;
+export const ORGANIZATION_CREATE_FAILED = 10010;
