@@ -70,7 +70,7 @@ export class OrganizationService {
     async findOrganizations({start, length}: {start:number; length: number;}): Promise<[Organization[], number]> {
         return this.organizationRepository.findAndCount({
             take: length,
-            skip: start,
+            skip: (start - 1) * length,
             order: {
                 createdAt: 'DESC'
             }

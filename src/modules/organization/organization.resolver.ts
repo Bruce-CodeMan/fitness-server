@@ -110,7 +110,7 @@ export class OrganizationResolver {
     async getOrganizations(@Args('page') page: PageInput): Promise<OrganizationResults> {
         const { pageNum, pageSize } = page;
         const [ results, total ] = await this.organizationService.findOrganizations({
-            start: (pageNum - 1) * pageSize + 1,
+            start: pageNum,
             length: pageSize
         })
         return {
