@@ -4,8 +4,11 @@
  * @Description: 
  */
 import { ORGANIZATION_CREATE_FAILED, ORGIMAGE_DELETE_FAILED, SUCCESS, UPDATE_ERR } from "@/common/constants/code";
+import { CurUserId } from "@/common/decorators/current-user.decorator";
 import { PageInput } from "@/common/dto/page-input.type";
 import { Result } from "@/common/dto/result.type";
+import { UseGuards } from '@nestjs/common';
+import { GqlAuthGuard } from '@/common/guards/auth.guards';
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 import { ORGANIZATION_NOT_EXIST } from "../../common/constants/code";
 import { OrgImageService } from "../orgImage/orgImage.service";
@@ -14,6 +17,7 @@ import { OrganizationResult, OrganizationResults } from "./dto/organization-outp
 import { OrganizationService } from "./organization.service";
 
 @Resolver()
+@UseGuards(GqlAuthGuard)
 export class OrganizationResolver {
     constructor(
         private readonly organizationService: OrganizationService,
@@ -51,7 +55,7 @@ export class OrganizationResolver {
     @Mutation(() => OrganizationResult)
     async commitOrganization(
         @Args('params') params: OrganizationInput,
-        // @CurUserId() userId: string,
+        @CurUserId() userId: string,
         @Args('id', { nullable: true }) id?: string
     ): Promise<Result> {
         if(id) {
@@ -71,7 +75,7 @@ export class OrganizationResolver {
             }
             const res = await this.organizationService.updateById(id, {
                 ...params,
-                updatedBy: "b4b10763-8215-4dc7-b6be-a94bade65b49"
+                updatedBy: userId
             });
             if(res) {
                 return {
@@ -87,7 +91,7 @@ export class OrganizationResolver {
         // 开始创建门店信息
         const res = await this.organizationService.create({
             ...params,
-            createdAt: "b4b10763-8215-4dc7-b6be-a94bade65b49"
+            createdAt: userId
         })
         if (res) {
             return {
@@ -122,6 +126,31 @@ export class OrganizationResolver {
                 total
             },
             message: '获取成功'
+        }
+    }
+
+    @Mutation(() => Result)
+    async delOrganization(
+        @Args('id') id: string, 
+        @CurUserId() userId: string
+    ): Promise<Result> {
+        const result = await this.organizationService.findById(id);
+        if(result) {
+            const delRes = await this.organizationService.deleteById(id, userId);
+            if(delRes) {
+                return {
+                    code: SUCCESS,
+                    message: '删除成功'
+                }
+            }
+            return {
+                code: ORGIMAGE_DELETE_FAILED,
+                message: "删除失败"
+            }
+        }
+        return {
+            code: ORGANIZATION_NOT_EXIST,
+            message: "门店信息不存在"
         }
     }
 }

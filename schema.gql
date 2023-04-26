@@ -198,6 +198,7 @@ type Mutation {
   createStudent(params: StudentInput!): Boolean!
   commitStudentInfo(params: StudentInput!): StudentResult!
   commitOrganization(params: OrganizationInput!, id: String): OrganizationResult!
+  delOrganization(id: String!): Result!
 }
 
 input UserInput {
