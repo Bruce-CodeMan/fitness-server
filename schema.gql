@@ -232,14 +232,17 @@ input OrganizationInput {
   """手机号"""
   tel: String
 
-  """tags"""
+  """标签"""
   tags: String
 
-  """longitude"""
+  """经度"""
   longitude: String
 
-  """latitude"""
+  """纬度"""
   latitude: String
+
+  """地址"""
+  address: String
 
   """营业执照"""
   businessLicense: String!

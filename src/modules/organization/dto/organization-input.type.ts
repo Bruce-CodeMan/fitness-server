@@ -17,14 +17,17 @@ export class OrganizationInput {
     @Field({ description: '手机号', nullable: true })
     tel: string;
 
-    @Field({ description: 'tags', nullable: true })
+    @Field({ description: '标签', nullable: true })
     tags: string;
 
-    @Field({ description: 'longitude', nullable: true })
+    @Field({ description: '经度', nullable: true })
     longitude: string;
 
-    @Field({ description: 'latitude', nullable: true })
+    @Field({ description: '纬度', nullable: true })
     latitude: string;
+
+    @Field({ description: '地址', nullable: true })
+    address: string;
 
     @Field({ description: '营业执照' })
     businessLicense: string;
