@@ -116,7 +116,7 @@ export class OrganizationResolver {
     async getOrganizations(
         @Args('page') page: PageInput, 
         @CurUserId() userId: string,
-        @Args('name') name?: string
+        @Args('name', { nullable: true }) name?: string
     ): Promise<OrganizationResults> {
         const { pageNum, pageSize } = page;
         // 筛选器
