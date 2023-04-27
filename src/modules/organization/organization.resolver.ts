@@ -15,6 +15,8 @@ import { OrgImageService } from "../orgImage/orgImage.service";
 import { OrganizationInput } from "./dto/organization-input.type";
 import { OrganizationResult, OrganizationResults } from "./dto/organization-output.type";
 import { OrganizationService } from "./organization.service";
+import { FindOptionsWhere, Like } from "typeorm";
+import { Organization } from "./models/organization.entity";
 
 @Resolver()
 @UseGuards(GqlAuthGuard)
@@ -111,8 +113,18 @@ export class OrganizationResolver {
      * @returns 
      */
     @Query(() => OrganizationResults)
-    async getOrganizations(@Args('page') page: PageInput): Promise<OrganizationResults> {
+    async getOrganizations(
+        @Args('page') page: PageInput, 
+        @CurUserId() userId: string,
+        @Args('name') name?: string
+    ): Promise<OrganizationResults> {
         const { pageNum, pageSize } = page;
+        // 筛选器
+        const where: FindOptionsWhere<Organization> = { createdBy: userId }
+        if (name) {
+            // 模糊查询
+            where.name = Like(`%${name}%`);
+        }
         const [ results, total ] = await this.organizationService.findOrganizations({
             start: pageNum,
             length: pageSize
