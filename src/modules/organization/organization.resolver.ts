@@ -129,6 +129,12 @@ export class OrganizationResolver {
         }
     }
 
+    /**
+     * 通过传入的id来删除门店信息
+     * @param id 门店的ID信息
+     * @param userId 登录的用户ID
+     * @returns Result
+     */
     @Mutation(() => Result)
     async delOrganization(
         @Args('id') id: string, 
