@@ -7,5 +7,5 @@ export const TYPE = 'mysql'
 export const HOST = 'localhost'
 export const PORT = 3306
 export const USER_NAME = 'root'
-export const PASS_WORD = '12345678'
+export const PASS_WORD = '123456'
 export const DATA_BASE = 'fitness'
