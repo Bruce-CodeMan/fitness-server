@@ -118,6 +118,7 @@ export class OrganizationResolver {
         @CurUserId() userId: string,
         @Args('name', { nullable: true }) name?: string
     ): Promise<OrganizationResults> {
+        console.log("name:", name)
         const { pageNum, pageSize } = page;
         // 筛选器
         const where: FindOptionsWhere<Organization> = { createdBy: userId }
@@ -126,8 +127,9 @@ export class OrganizationResolver {
             where.name = Like(`%${name}%`);
         }
         const [ results, total ] = await this.organizationService.findOrganizations({
-            start: pageNum,
-            length: pageSize
+            start: pageNum === 1 ? 0: (pageNum -1) * pageSize + 1,
+            length: pageSize,
+            where,
         })
         return {
             code: SUCCESS,

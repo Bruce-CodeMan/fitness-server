@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Organization } from "./models/organization.entity";
-import { DeepPartial, Repository } from "typeorm";
+import { DeepPartial, FindOptionsWhere, Repository } from "typeorm";
 
 @Injectable()
 export class OrganizationService {
@@ -67,13 +67,22 @@ export class OrganizationService {
      *  @param length 每页的数量
      *  @returns [Organization[], number]
      */
-    async findOrganizations({start, length}: {start:number; length: number;}): Promise<[Organization[], number]> {
+    async findOrganizations({
+        start, 
+        length, 
+        where
+    }: {
+        start:number; 
+        length: number; 
+        where: FindOptionsWhere<Organization>
+    }): Promise<[Organization[], number]> {
         return this.organizationRepository.findAndCount({
             take: length,
-            skip: (start - 1) * length,
+            skip: start,
             order: {
                 createdAt: 'DESC'
             },
+            where,
             relations: ['orgFrontImg', 'orgRoomImg', 'orgOtherImg']
         })
     }
