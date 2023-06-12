@@ -65,8 +65,4 @@ export class Course extends CommonEntity {
     })
     otherInfo: string;
 
-    @ManyToOne(() => Organization, (org) => org.courses, {
-        cascade: true
-    })
-    org: Organization;
 }

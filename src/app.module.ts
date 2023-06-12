@@ -5,12 +5,12 @@
  */
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from "./modules/user/user.module";
 import { GraphQLModule } from "@nestjs/graphql";
 import { ApolloDriver } from "@nestjs/apollo";
 import { OSSModule } from "./modules/oss/oss.module";
+import { CourseModule } from "./modules/course/course.module";
 import { AuthModule } from "./modules/auth/auth.module";
 import { StudentModule } from "./modules/student/student.module";
 import { OrganizationModule } from "./modules/organization/organization.module";
@@ -38,9 +38,10 @@ import { DATA_BASE, HOST, PASS_WORD, PORT, TYPE, USER_NAME } from "./common/cons
     OSSModule,
     AuthModule,
     StudentModule,
-    OrganizationModule
+    OrganizationModule,
+    CourseModule
   ],
-  controllers: [AppController],
+  controllers: [],
   providers: [AppService],
 })
 export class AppModule {}

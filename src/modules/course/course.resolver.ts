@@ -7,7 +7,7 @@ import { GqlAuthGuard } from "@/common/guards/auth.guards";
 import { CourseService } from "./course.service";
 import { CourseResult, CourseResults } from "./dto/result-course.output";
 import { SUCCESS, COURSE_NOT_EXIST, COURSE_CREATE_FAIL, COURSE_UPDATE_FAIL, COURSE_DEL_FAIL } from "@/common/constants/code";
-import { ParticalCourseInput } from "./dto/course.input";
+import { CourseInput, ParticalCourseInput } from "./dto/course.input";
 import { CurUserId } from "@/common/decorators/current-user.decorator";
 import { CurOrgId } from "@/common/decorators/current-org.decorator";
 import { Result } from "@/common/dto/result.type";
@@ -51,7 +51,7 @@ export class CourseResolver {
      */
     @Mutation(() => CourseResult)
     async commitCourseInfo(
-        @Args("params") params: ParticalCourseInput,
+        @Args("params") params: CourseInput,
         @CurUserId() userId: string,
         @CurOrgId() orgId: string,
         @Args('id', { nullable: true }) id: string
@@ -60,9 +60,6 @@ export class CourseResolver {
             const res = await this.courseService.create({
                 ...params,
                 createdBy: userId,
-                org: {
-                    id: orgId
-                },
             });
             if(res) {
                 return {
@@ -115,10 +112,7 @@ export class CourseResolver {
     ): Promise<CourseResults> {
         const { pageNum, pageSize } = page;
         const where: FindOptionsWhere<Course> = {
-            createdBy: userId,
-            org: {
-                id: orgId
-            }
+            createdBy: userId
         }
         if (name) {
             where.name = Like(`%${name}%`);

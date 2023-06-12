@@ -50,6 +50,61 @@ type OssType {
   dir: String!
 }
 
+type CourseType {
+  id: String!
+  createdAt: DateTime!
+  createdBy: String
+  updatedAt: DateTime
+  updatedBy: String
+  deletedAt: DateTime
+  deletedBy: String
+
+  """课程名称"""
+  name: String!
+
+  """课程描述"""
+  desc: String
+
+  """适龄人群"""
+  group: String!
+
+  """适合基础"""
+  baseAbility: String!
+
+  """限制上课人数"""
+  limitNumber: Float!
+
+  """持续时间"""
+  duration: Float!
+
+  """预约信息"""
+  reserveInfo: String
+
+  """退款信息"""
+  refundInfo: String
+
+  """其他说明信息"""
+  otherInfo: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type CourseResult {
+  code: Int!
+  message: String!
+  data: CourseType
+}
+
+type CourseResults {
+  code: Int!
+  message: String!
+  data: [CourseType!]
+  page: Page
+}
+
 type StudentType {
   id: String!
   createdAt: DateTime!
@@ -71,11 +126,6 @@ type StudentType {
   """账号"""
   account: String
 }
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
 
 type StudentResult {
   code: Int!
@@ -174,6 +224,8 @@ type Query {
   getStudents(page: PageInput!): StudentResults!
   getOrganizationInfo(id: String!): OrganizationResult!
   getOrganizations(page: PageInput!, name: String): OrganizationResults!
+  getCourseInfo(id: String!): CourseResult!
+  getCourses(page: PageInput!, name: String): CourseResults!
 }
 
 input PageInput {
@@ -199,6 +251,8 @@ type Mutation {
   commitStudentInfo(params: StudentInput!): StudentResult!
   commitOrganization(params: OrganizationInput!, id: String): OrganizationResult!
   delOrganization(id: String!): Result!
+  commitCourseInfo(params: CourseInput!, id: String): CourseResult!
+  deleteCourse(id: String!): Result!
 }
 
 input UserInput {
@@ -271,4 +325,33 @@ input OrgImageInput {
   id: String
   url: String!
   remark: String
+}
+
+input CourseInput {
+  """课程名称"""
+  name: String!
+
+  """课程描述"""
+  desc: String
+
+  """适龄人群"""
+  group: String!
+
+  """适合基础"""
+  baseAbility: String!
+
+  """限制上课人数"""
+  limitNumber: Float!
+
+  """持续时间"""
+  duration: Float!
+
+  """预约信息"""
+  reserveInfo: String
+
+  """退款信息"""
+  refundInfo: String
+
+  """其他说明信息"""
+  otherInfo: String
 }
