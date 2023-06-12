@@ -28,5 +28,20 @@ export class CourseService {
         return false;
     }
 
+    /**
+     * Find Course By Course Id
+     * @param id 
+     * @returns Course Entity
+     */
+    async findById(id: string): Promise<Course> {
+        return this.courseRepository.findOne({
+            where: {
+                id
+            }
+        })
+    }
+
+    
+
 
 }
