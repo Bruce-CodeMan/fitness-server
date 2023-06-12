@@ -30,3 +30,6 @@ export class CourseInput {
     @Field({ description: "其他说明信息", nullable: true })
     otherInfo: string;
 }
+
+@InputType()
+export class ParticalCourseInput extends PartialType(CourseInput) {}

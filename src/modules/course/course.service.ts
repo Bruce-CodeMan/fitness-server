@@ -91,7 +91,7 @@ export class CourseService {
      * @param userId 
      * @returns 
      */
-    async DeleteQueryBuilder(id: string, userId: string): Promise<boolean> {
+    async deleteById(id: string, userId: string): Promise<boolean> {
         const res1 = await this.courseRepository.update(id, {
             deletedBy: userId
         })
