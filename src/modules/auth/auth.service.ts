@@ -41,6 +41,7 @@ export class AuthService {
             phoneNumbers: tel,
             templateParam: `{\"code\":\"${code}\"}`,
         });
+        console.log("sendSmsRequest: ", sendSmsRequest);
         const runtime = new Utils.RuntimeOptions({ });
         try {
             // 复制代码运行请自行打印 API 的返回值
