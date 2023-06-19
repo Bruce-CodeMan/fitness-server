@@ -96,11 +96,11 @@ export class CourseResolver {
     }
 
     /**
-     * 
-     * @param page 
-     * @param userId 
-     * @param orgId 
-     * @param name 
+     * 获取课程信息
+     * @param page 分页信息
+     * @param userId 用户ID
+     * @param orgId 机构ID
+     * @param name 课程名称
      * @returns 
      */
     @Query(() => CourseResults)
@@ -118,7 +118,7 @@ export class CourseResolver {
             where.name = Like(`%${name}%`);
         }
         const [results, total] = await this.courseService.findCourses({
-            start: pageNum === 1 ? 0 : (pageNum - 1) * pageSize + 1,
+            start: pageNum === 1 ? 0 : (pageNum - 1) * pageSize,
             length: pageSize,
             where
         })
