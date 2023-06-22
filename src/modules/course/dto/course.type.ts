@@ -1,6 +1,9 @@
 import { CommonType } from "@/common/dto/common.type";
 import { Field, ObjectType } from "@nestjs/graphql";
 
+// Custom Imports
+import { ReducibleTimeType } from "./common.type";
+
 @ObjectType()
 export class CourseType extends CommonType {
     @Field({ description: "课程名称" })
@@ -30,4 +33,6 @@ export class CourseType extends CommonType {
     @Field({ description: "其他说明信息", nullable: true })
     otherInfo: string;
 
+    @Field(()=>[ReducibleTimeType], { description: "可约时间", nullable: true })
+    reducibleTime: ReducibleTimeType[];
 }

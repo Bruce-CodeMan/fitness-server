@@ -1,5 +1,7 @@
 import { Field, InputType, PartialType } from "@nestjs/graphql";
 
+// Custom Imports
+import { ReducibleTimeInput } from "./common.input";
 
 @InputType()
 export class CourseInput {
@@ -29,6 +31,9 @@ export class CourseInput {
 
     @Field({ description: "其他说明信息", nullable: true })
     otherInfo: string;
+
+    @Field(()=>[ReducibleTimeInput], { description: "可约时间", nullable: true })
+    reducibleTime: ReducibleTimeInput[];
 }
 
 @InputType()

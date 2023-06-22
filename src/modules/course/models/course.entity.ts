@@ -3,7 +3,7 @@ import { IsNotEmpty, IsInt, Min } from "class-validator";
 
 // Custom Imports
 import { CommonEntity } from "@/common/entities/common.entity";
-import { Organization } from "@/modules/organization/models/organization.entity";
+import { ReducibleTimeType } from "../dto/common.type";
 
 
 @Entity("cource")
@@ -64,5 +64,11 @@ export class Course extends CommonEntity {
         nullable: true
     })
     otherInfo: string;
+
+    @Column('simple-json', {
+        comment: "可约时间",
+        nullable: true
+    })
+    reducibleTime: ReducibleTimeType[]
 
 }

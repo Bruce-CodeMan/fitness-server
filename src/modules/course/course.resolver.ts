@@ -51,7 +51,7 @@ export class CourseResolver {
      */
     @Mutation(() => CourseResult)
     async commitCourseInfo(
-        @Args("params") params: CourseInput,
+        @Args("params") params: ParticalCourseInput,
         @CurUserId() userId: string,
         @CurOrgId() orgId: string,
         @Args('id', { nullable: true }) id: string
