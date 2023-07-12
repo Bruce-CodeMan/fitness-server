@@ -112,7 +112,10 @@ export class CourseResolver {
     ): Promise<CourseResults> {
         const { pageNum, pageSize } = page;
         const where: FindOptionsWhere<Course> = {
-            createdBy: userId
+            createdBy: userId,
+            org: {
+                id: orgId
+            }
         }
         if (name) {
             where.name = Like(`%${name}%`);

@@ -56,6 +56,8 @@ export class Organization extends CommonEntity {
     @OneToMany(() => OrgImage, (orgImage) => orgImage.orgIdForOther, { cascade: true })
     orgOtherImg?: OrgImage[];
 
+    @OneToMany(() => Course, (course) => course.org)
+    courses: Course[];
 }
 
 

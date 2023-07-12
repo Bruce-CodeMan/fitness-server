@@ -4,6 +4,7 @@ import { IsNotEmpty, IsInt, Min } from "class-validator";
 // Custom Imports
 import { CommonEntity } from "@/common/entities/common.entity";
 import { ReducibleTimeType } from "../dto/common.type";
+import { Organization } from "@/modules/organization/models/organization.entity";
 
 
 @Entity("cource")
@@ -71,4 +72,8 @@ export class Course extends CommonEntity {
     })
     reducibleTime: ReducibleTimeType[]
 
+    @ManyToOne(() => Organization, (org)=>org.courses, {
+        cascade: true
+    })
+    org: Organization
 }
