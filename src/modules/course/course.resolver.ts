@@ -60,6 +60,9 @@ export class CourseResolver {
             const res = await this.courseService.create({
                 ...params,
                 createdBy: userId,
+                org: {
+                    id: orgId
+                }
             });
             if(res) {
                 return {
