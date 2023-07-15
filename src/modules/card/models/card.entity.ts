@@ -28,7 +28,7 @@ export class Card extends CommonEntity {
     time: number;
 
     @Column({ comment: "有效期", default: 0 })
-    validate: number;
+    validatyDay: number;
 
     @ManyToOne(() => Course, { cascade: true })
     course: Course;
