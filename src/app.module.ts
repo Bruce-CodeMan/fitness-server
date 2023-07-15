@@ -6,9 +6,12 @@
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { Module } from '@nestjs/common';
 import { AppService } from './app.service';
-import { UserModule } from "./modules/user/user.module";
 import { GraphQLModule } from "@nestjs/graphql";
 import { ApolloDriver } from "@nestjs/apollo";
+
+
+import { UserModule } from "./modules/user/user.module";
+import { CardModule } from "./modules/card/card.module";
 import { OSSModule } from "./modules/oss/oss.module";
 import { CourseModule } from "./modules/course/course.module";
 import { AuthModule } from "./modules/auth/auth.module";
@@ -39,7 +42,8 @@ import { DATA_BASE, HOST, PASS_WORD, PORT, TYPE, USER_NAME } from "./common/cons
     AuthModule,
     StudentModule,
     OrganizationModule,
-    CourseModule
+    CourseModule,
+    CardModule
   ],
   controllers: [],
   providers: [AppService],
