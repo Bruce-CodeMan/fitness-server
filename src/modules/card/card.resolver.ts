@@ -11,8 +11,11 @@ import { CurOrgId } from "@/common/decorators/current-org.decorator";
 import { Result } from "@/common/dto/result.type";
 import { FindOptionsWhere, Like } from "typeorm";
 import { Card } from "./models/card.entity";
+import { UseGuards } from "@nestjs/common";
+import { GqlAuthGuard } from "@/common/guards/auth.guards";
 
 @Resolver(() => CardType)
+@UseGuards(GqlAuthGuard)
 export class CardResolver {
     constructor(
         private readonly cardService: CardService

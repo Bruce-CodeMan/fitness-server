@@ -30,7 +30,7 @@ export class CardService {
             where: {
                 id,
             },
-            relations:['course', 'organization']
+            relations:['course', 'org']
         })
     }
 

@@ -8,6 +8,7 @@ import { Course } from "@/modules/course/models/course.entity";
 import { OrgImage } from "@/modules/orgImage/models/orgImage.entity";
 import { IsNotEmpty } from "class-validator";
 import { Column, Entity, OneToMany } from "typeorm";
+import { Card } from "@/modules/card/models/card.entity";
 
 @Entity("organization")
 export class Organization extends CommonEntity {
@@ -58,6 +59,9 @@ export class Organization extends CommonEntity {
 
     @OneToMany(() => Course, (course) => course.org)
     courses: Course[];
+
+    @OneToMany(() => Card, (card) => card.org)
+    cards: Card
 }
 
 
