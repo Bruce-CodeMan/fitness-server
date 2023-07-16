@@ -76,7 +76,7 @@ export class ProductService {
     }
 
     // 通过id删除商品
-    async DeleteQueryBuilder(id: string, userId: string): Promise<boolean> {
+    async deleteById(id: string, userId: string): Promise<boolean> {
         const res_1 = await this.productRepository.update(id, {
             deletedBy: userId
         })

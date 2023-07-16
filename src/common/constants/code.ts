@@ -23,3 +23,7 @@ export const CARD_NOT_EXIST = 10016;
 export const CARD_CREATE_FAIL = 10017;
 export const CARD_UPDATE_FAIL = 10018;
 export const CARD_DELETE_FAIL = 10019;
+export const PRODUCT_NOT_EXIST = 10020;
+export const PRODUCT_CREATE_FAIL = 10021;
+export const PRODUCT_UPDATE_FAIL = 10022;
+export const PRODUCT_DEL_FAIL = 10023;
