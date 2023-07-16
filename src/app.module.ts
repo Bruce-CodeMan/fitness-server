@@ -17,6 +17,7 @@ import { CourseModule } from "./modules/course/course.module";
 import { AuthModule } from "./modules/auth/auth.module";
 import { StudentModule } from "./modules/student/student.module";
 import { OrganizationModule } from "./modules/organization/organization.module";
+import { ProductModule } from "./modules/product/product.module";
 import { DATA_BASE, HOST, PASS_WORD, PORT, TYPE, USER_NAME } from "./common/constants/mysql";
 
 @Module({
@@ -43,7 +44,8 @@ import { DATA_BASE, HOST, PASS_WORD, PORT, TYPE, USER_NAME } from "./common/cons
     StudentModule,
     OrganizationModule,
     CourseModule,
-    CardModule
+    CardModule,
+    ProductModule
   ],
   controllers: [],
   providers: [AppService],
