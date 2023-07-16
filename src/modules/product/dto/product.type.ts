@@ -8,7 +8,7 @@ import { CardType } from "@/modules/card/dto/card.type";
  * 商品
  */
 @ObjectType()
-export class Product extends CommonType {
+export class ProductType extends CommonType {
   @Field({ description: "名称" })
   name: string;
 
